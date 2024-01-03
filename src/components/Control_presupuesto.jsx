@@ -5,10 +5,11 @@ const Control_presupuesto = ({ presupuesto }) => {
     const formatearCantiadad = (cantidad) => {
         return cantidad.toLocaleString('en-US', {
             style: 'currency', currency: 'USD'
-        })
+        });
 
-    }
-    console.log(formatearCantiadad(presupuesto))
+    };
+
+
     return (
         <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
             <div>
@@ -31,7 +32,7 @@ const Control_presupuesto = ({ presupuesto }) => {
             </div>
         </div>
 
-    )
-}
+    );
+};
 
-export default Control_presupuesto
+export default Control_presupuesto;
