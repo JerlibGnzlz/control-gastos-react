@@ -5,11 +5,11 @@ import Mensaje from './Mensaje';
 
 const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto }) => {
 
-    const [nombre, setNombre] = useState("")
-    const [cantidad, setCantidad] = useState(0)
-    const [categoria, setCategoria] = useState("")
+    const [nombre, setNombre] = useState("");
+    const [cantidad, setCantidad] = useState("");
+    const [categoria, setCategoria] = useState("");
 
-    const [mensaje, setMensaje] = useState("")
+    const [mensaje, setMensaje] = useState("");
 
 
     const ocultarModal = () => {
@@ -22,19 +22,19 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto }) => {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         if (!nombre || !cantidad || !categoria) {
-            setMensaje("Todos los campos son requeridos")
-            return
+            setMensaje("Todos los campos son requeridos");
+            return;
         }
         setTimeout(() => {
-            setMensaje('')
+            setMensaje('');
 
         }, 1000);
 
-        guardarGasto({ nombre, cantidad, categoria })
-    }
+        guardarGasto({ nombre, cantidad, categoria });
+    };
 
 
 
@@ -75,7 +75,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto }) => {
                         type='number'
                         placeholder='Añade la Cantidad del Gasto: Ej. 300'
                         value={cantidad}
-                        onChange={e => { setCantidad(+e.target.value) }}
+                        onChange={e => { setCantidad(+e.target.value); }}
 
                     />
 
@@ -86,7 +86,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto }) => {
 
                     <select id='categoria'
                         value={categoria}
-                        onChange={e => { setCategoria(e.target.value) }}
+                        onChange={e => { setCategoria(e.target.value); }}
                     >
                         <option value="">-- Seleccione --</option>
                         <option value="ahorro">Ahorro</option>
@@ -101,7 +101,7 @@ const Modal = ({ setModal, animarModal, setAnimarModal, guardarGasto }) => {
                 <input
                     type='submit'
                     value="añade Gastos"
-                    onChange={e => { e.target.value }}
+                    onChange={e => { e.target.value; }}
                 />
 
             </form>
