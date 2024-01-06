@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import NuevoPresupuesto from "./Nuevo_presupuesto";
-import ControlPresupuesto from './Control_presupuesto'
+import ControlPresupuesto from './Control_presupuesto';
 
 const Header = ({
+  gastos,
   presupuesto,
   setPresupuesto,
   insValidPresupuesto,
@@ -15,7 +16,9 @@ const Header = ({
 
 
       {insValidPresupuesto ? (
-        <ControlPresupuesto presupuesto={presupuesto} />
+        <ControlPresupuesto
+          gastos={gastos}
+          presupuesto={presupuesto} />
       ) : (
         <NuevoPresupuesto
           presupuesto={presupuesto}

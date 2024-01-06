@@ -1,6 +1,26 @@
 /* eslint-disable react/prop-types */
 
-const Control_presupuesto = ({ presupuesto }) => {
+import { useEffect, useState } from "react";
+
+const Control_presupuesto = ({ presupuesto, gastos }) => {
+
+    const [disponible, setDisponible] = useState(0);
+    const [gastado, setGastado] = useState(0);
+
+
+    useEffect(() => {
+        const totalGastado = gastos.reduce((total, gasto) => {
+            return gasto.cantidad + total;
+        }, 0);
+
+        const totalDisponible = presupuesto - totalGastado;
+
+        setGastado(totalGastado);
+        setDisponible(totalDisponible);
+
+
+    }, [gastos]);
+
 
     const formatearCantiadad = (cantidad) => {
         return cantidad.toLocaleString('en-US', {
@@ -23,11 +43,11 @@ const Control_presupuesto = ({ presupuesto }) => {
                 </p>
 
                 <p>Disponible:
-                    <span> {formatearCantiadad(0)}</span>
+                    <span> {formatearCantiadad(disponible)}</span>
                 </p>
 
                 <p>Gastado:
-                    <span> {formatearCantiadad(0)}</span>
+                    <span> {formatearCantiadad(gastado)}</span>
                 </p>
             </div>
         </div>

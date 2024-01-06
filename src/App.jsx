@@ -44,8 +44,9 @@ const App = () => {
     <div className={modal ? "fijar" : ""}>
       <Header
         presupuesto={presupuesto}
-        setPresupuesto={setPresupuesto}
         insValidPresupuesto={insValidPresupuesto}
+        gastos={gastos}
+        setPresupuesto={setPresupuesto}
         setIsvalidPresupuesto={setIsvalidPresupuesto}
 
       />
