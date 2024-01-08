@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+
+
 import {
     LeadingActions,
     SwipeableList,
@@ -32,29 +34,30 @@ const diccionarioIconos = {
 };
 
 
-const leadingActions = () => (
-    <LeadingActions>
-        <SwipeAction onClick={() => console.log('Editar')}>
-            Editar...
-        </SwipeAction>
-    </LeadingActions>
-);
 
 
-const trailingActions = () => (
-    <TrailingActions>
-        <SwipeAction
-            destructive={true}
-            onClick={() => console.log('Eliminar')}>
-            Eliminar...
-        </SwipeAction>
-    </TrailingActions>
-);
-
-
-const Gasto = ({ gasto }) => {
+const Gasto = ({ gasto, setGastoEditar, eliminarGasto }) => {
 
     const { nombre, cantidad, categoria, id, fecha } = gasto;
+
+    const leadingActions = () => (
+        <LeadingActions>
+            <SwipeAction onClick={() => setGastoEditar(gasto)}>
+                Editar...
+            </SwipeAction>
+        </LeadingActions>
+    );
+
+
+    const trailingActions = () => (
+        <TrailingActions>
+            <SwipeAction
+                destructive={true}
+                onClick={() => eliminarGasto(id)}>
+                Eliminar...
+            </SwipeAction>
+        </TrailingActions>
+    );
     return (
 
         <SwipeableList>

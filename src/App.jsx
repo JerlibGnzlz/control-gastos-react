@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import InuevoGasto from "./img/nuevo-gasto.svg";
 import { generarId } from "./helpers";
@@ -16,9 +16,25 @@ const App = () => {
 
   const [gastos, setGastos] = useState([]);
 
+  const [gastoEditar, setGastoEditar] = useState({});
+
+
+  useEffect(() => {
+
+    if (Object.keys(gastoEditar).length > 0) {
+      setModal(true);
+
+
+      setTimeout(() => {
+        setAnimarModal(true);
+      }, 500);
+    }
+  }, [gastoEditar]);
+
 
   const handleNuevoGasto = () => {
     setModal(true);
+    setGastoEditar({});
 
     setTimeout(() => {
       setAnimarModal(true);
@@ -28,16 +44,31 @@ const App = () => {
 
   const guardarGasto = (gasto) => {
 
-    gasto.id = generarId();
-    gasto.fecha = Date.now();
+    if (gasto.id) {
 
-    setGastos([...gastos, gasto]);
+      const gastoActualizados = gastos.map(gastoState => gastoState.id === gasto.id ? gasto : gastoState);
+
+      setGastos(gastoActualizados);
+      setGastoEditar({});
+    } else {
+      gasto.id = generarId();
+      gasto.fecha = Date.now();
+      setGastos([...gastos, gasto]);
+
+    }
+
 
     setAnimarModal(false);
     setTimeout(() => {
       setModal(false);
     }, 500);
 
+  };
+
+  const eliminarGasto = id => {
+    const gastoActualizado = gastos.filter(gasto => gasto.id !== id);
+    setGastos(gastoActualizado);
+    setGastoEditar({});
   };
 
   return (
@@ -57,6 +88,8 @@ const App = () => {
           <main>
             <ListadoGastos
               gastos={gastos}
+              setGastoEditar={setGastoEditar}
+              eliminarGasto={eliminarGasto}
             />
           </main>
           <div className="nuevo-gasto">
@@ -74,6 +107,8 @@ const App = () => {
         animarModal={animarModal}
         setAnimarModal={setAnimarModal}
         guardarGasto={guardarGasto}
+        gastoEditar={gastoEditar}
+        setGastoEditar={setGastoEditar}
       />}
 
     </div>

@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
-import Gasto from "./Gasto"
+import Gasto from "./Gasto";
 
-const Listado_gasto = ({ gastos }) => {
+const Listado_gasto = ({ gastos, setGastoEditar, eliminarGasto }) => {
     return (
         <div className="listado-gastos contenedor">
             <h2>{gastos != 0 ? "Gastos" : "No hay gastos"}</h2>
@@ -10,10 +10,12 @@ const Listado_gasto = ({ gastos }) => {
                 <Gasto
                     key={gasto.id}
                     gasto={gasto}
+                    setGastoEditar={setGastoEditar}
+                    eliminarGasto={eliminarGasto}
 
                 />)}
         </div>
-    )
-}
+    );
+};
 
-export default Listado_gasto
+export default Listado_gasto;
