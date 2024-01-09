@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { useEffect, useState } from "react";
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const Control_presupuesto = ({ presupuesto, gastos }) => {
@@ -42,8 +42,13 @@ const Control_presupuesto = ({ presupuesto, gastos }) => {
         <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
             <div>
                 <CircularProgressbar
+                    styles={buildStyles({
+                        pathColor: "#D6002F",
+                        textColor: "#D6002F"
 
+                    })}
                     value={porcentaje}
+                    text={`${porcentaje}% Gastado `}
                 />
             </div>
 
