@@ -4,6 +4,8 @@ import InuevoGasto from "./img/nuevo-gasto.svg";
 import { generarId } from "./helpers";
 import Modal from "./components/Modal";
 import ListadoGastos from './components/Listado_gasto';
+import Filtros from "./components/Filtros";
+
 
 const App = () => {
 
@@ -21,6 +23,11 @@ const App = () => {
   const [animarModal, setAnimarModal] = useState(false);
 
   const [gastoEditar, setGastoEditar] = useState({});
+
+  const [filtro, setFiltro] = useState({});
+
+  const [gastosFiltrados, setGastosFiltrados] = useState([]);
+
 
 
   useEffect(() => {
@@ -51,6 +58,13 @@ const App = () => {
       setIsvalidPresupuesto(true);
     }
   }, []);
+
+  useEffect(() => {
+    const gastosFiltrados = gastos.filter(gasto => gasto.categoria === filtro);
+    setGastosFiltrados(gastosFiltrados);
+    // setFiltro(gastosFiltrados);
+  }, [filtro]);
+
 
 
   const handleNuevoGasto = () => {
@@ -98,6 +112,7 @@ const App = () => {
         presupuesto={presupuesto}
         insValidPresupuesto={insValidPresupuesto}
         gastos={gastos}
+        setGastos={setGastos}
         setPresupuesto={setPresupuesto}
         setIsvalidPresupuesto={setIsvalidPresupuesto}
 
@@ -107,10 +122,16 @@ const App = () => {
 
         <>
           <main>
+            <Filtros
+              filtro={filtro}
+              setFiltro={setFiltro}
+            />
             <ListadoGastos
               gastos={gastos}
               setGastoEditar={setGastoEditar}
               eliminarGasto={eliminarGasto}
+              filtro={filtro}
+              gastosFiltrados={gastosFiltrados}
             />
           </main>
           <div className="nuevo-gasto">
